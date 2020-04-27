@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using SalaVItual.Services.Services;
+using SalaVItual.Services.ViewModels;
 
 namespace SalaVirtual.Api.Controllers
 {
@@ -11,10 +8,19 @@ namespace SalaVirtual.Api.Controllers
     [Route("api/sala/virtual/acesso/")]
     public class LoginController : Controller
     {
-        [HttpGet("login")]
-        public void Login()
+        private readonly ILoginService _loginService;
+
+        public LoginController(ILoginService loginService)
         {
-            //return StatusCode(200);
+            _loginService = loginService;
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody]UserViewModel user)
+        {
+            _loginService.login(user);
+
+            return StatusCode(200);
         }
 
     }

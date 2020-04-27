@@ -19,7 +19,9 @@ namespace SalaVItual.Services.AutoMapper
         private static void RegisterServices(IServiceCollection serviceCollection)
         {
             //serviceCollection.AddTransient<IMapperService, MapperService>();
-            serviceCollection.AddTransient <IServiceTest, ServiceTest>();
+            serviceCollection.AddTransient <ILoginService, LoginService>();
+            serviceCollection.AddTransient <IRegisterService, RegisterService>();
+            serviceCollection.AddTransient<IRecoverPasswordService, RecoverPasswordService>();
         }
 
         private static void RegisterRepositories(IServiceCollection serviceCollection)
