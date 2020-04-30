@@ -2,6 +2,6 @@
 {
     public interface IRecoverPasswordService
     {
-        bool Recover();
+        bool Recover(string email);
     }
 }

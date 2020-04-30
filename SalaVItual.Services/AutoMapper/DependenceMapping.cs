@@ -15,6 +15,7 @@ namespace SalaVItual.Services.AutoMapper
         }
 
 
+
         //TODO Injeção de dependencia e instancia de objetos 
         private static void RegisterServices(IServiceCollection serviceCollection)
         {
