@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SalaVirtual.Services.AutoMapper;
+using SalaVirtual.Util.Environment;
 using SalaVItual.Services.AutoMapper;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -36,6 +37,8 @@ namespace sala_virtual_presenca_automatica_api
                 c.SwaggerDoc("V1", new Info { Title = "API Sala Virtual" });
 
             });
+
+            services.Configure<VariaveisDeAmbiente>(Configuration.GetSection("variaveisAmbiente"));
 
         }
 

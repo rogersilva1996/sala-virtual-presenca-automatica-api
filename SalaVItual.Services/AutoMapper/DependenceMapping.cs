@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using SalaVirtual.Util;
 using SalaVItual.Services.Services;
 
 namespace SalaVItual.Services.AutoMapper
@@ -19,6 +20,7 @@ namespace SalaVItual.Services.AutoMapper
         //TODO Injeção de dependencia e instancia de objetos 
         private static void RegisterServices(IServiceCollection serviceCollection)
         {
+            serviceCollection.AddTransient<ISendEmail, SendEmail>();
             //serviceCollection.AddTransient<IMapperService, MapperService>();
             serviceCollection.AddTransient <ILoginService, LoginService>();
             serviceCollection.AddTransient <IRegisterService, RegisterService>();
