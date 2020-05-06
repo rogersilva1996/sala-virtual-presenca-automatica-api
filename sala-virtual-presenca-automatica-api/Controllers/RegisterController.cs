@@ -18,12 +18,12 @@ namespace SalaVirtual.Api.Controllers
             _registerService = registerService;
         }
 
-        [HttpPost("SignIn")]
+        [HttpPost("signIn")]
         public IActionResult Register([FromBody] UserViewModel user)
         {
             _registerService.Register(user);
 
-            return StatusCode(200);
+            return StatusCode(200, "Registro realizado com sucesso");
         }
     }
 }

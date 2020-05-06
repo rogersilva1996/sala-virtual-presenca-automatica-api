@@ -18,6 +18,19 @@ namespace SalaVItual.Services.Services
 
         public bool Recover(string email)
         {
+            try
+            {
+                //string recoveryPassword = repositoryRecoveryPassword.recover(email);
+
+                //TODO - senha = recoveryPassword
+                _sendEmail.Email(email, "9826test" /*recoveryPassword*/);
+
+                return true/*recoveryResult*/;
+            }
+            catch
+            {
+                return false;
+            }
 
             //string recoveryPassword = repositoryRecoveryPassword.recover(email);
 

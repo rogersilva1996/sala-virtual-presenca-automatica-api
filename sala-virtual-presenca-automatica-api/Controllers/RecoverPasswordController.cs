@@ -18,9 +18,13 @@ namespace SalaVirtual.Api.Controllers
         [HttpPost("recuperar")]
         public IActionResult Recover([FromBody]UserViewModel user)
         {
-            _recoverPasswordService.Recover(user.email);
+            if (_recoverPasswordService.Recover(user.email))
+            {
+                return StatusCode(200, "OK");
+            }
 
-            return StatusCode(200);
+            return StatusCode(500, "ERRO INTERNO DO SERVIDOR");
+            
         }
 
     }
