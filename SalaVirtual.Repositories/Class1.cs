@@ -4,5 +4,6 @@ namespace SalaVirtual.Repositories
 {
     public class Class1
     {
+
     }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using SalaVItual.Services.Services;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace sala_virtual_presenca_automatica_api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class PublicController : Controller
     {
         //private readonly IServiceTest _serviceTest;
@@ -18,13 +13,13 @@ namespace sala_virtual_presenca_automatica_api.Controllers
         }
 
         //// GET api/values/5
-        //[HttpGet("test")]
-        //public IActionResult Get(int value1, int value2)
-        //{
+        [HttpGet("test")]
+        public IActionResult Get()
+        {
 
-        //    return StatusCode(200, _serviceTest.calc(value1, value2));
+            return StatusCode(200, "test");
 
-        //}
+        }
 
 
     }
