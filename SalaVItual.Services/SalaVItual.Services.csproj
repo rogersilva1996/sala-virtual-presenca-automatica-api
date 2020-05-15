@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SalaVirtual.Repositories\SalaVirtual.Repositories.csproj" />
     <ProjectReference Include="..\SalaVirtual.Util\SalaVirtual.Util.csproj" />
   </ItemGroup>
 

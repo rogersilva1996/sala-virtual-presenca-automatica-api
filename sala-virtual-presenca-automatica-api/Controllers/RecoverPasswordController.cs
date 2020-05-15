@@ -23,7 +23,7 @@ namespace SalaVirtual.Api.Controllers
                 return StatusCode(200, "OK");
             }
 
-            return StatusCode(500, "ERRO INTERNO DO SERVIDOR");
+            return StatusCode(Response.StatusCode);
             
         }
 

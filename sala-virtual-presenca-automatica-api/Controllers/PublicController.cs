@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SalaVirtual.Repositories;
 using SalaVItual.Services.Services;
 using SalaVItual.Services.ViewModels;
 
@@ -23,10 +24,12 @@ namespace sala_virtual_presenca_automatica_api.Controllers
         public IActionResult result()
         {
             UserViewModel userViewModel = new UserViewModel();
+      
 
             return StatusCode(200, userViewModel);
         }
 
+            
 
         //// GET api/values/5
         //[HttpGet("test")]

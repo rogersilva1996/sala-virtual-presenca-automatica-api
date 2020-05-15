@@ -39,6 +39,7 @@ namespace sala_virtual_presenca_automatica_api
             });
 
             services.Configure<VariaveisDeAmbiente>(Configuration.GetSection("variaveisAmbiente"));
+            services.Configure<Connection>(Configuration.GetSection("ConnectionString"));
 
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using SalaVirtual.Repositories;
 using SalaVirtual.Util;
 using SalaVItual.Services.Services;
 
@@ -29,7 +30,7 @@ namespace SalaVItual.Services.AutoMapper
 
         private static void RegisterRepositories(IServiceCollection serviceCollection)
         {
-            //serviceCollection.AddTransient<interface, repositories>();
+            serviceCollection.AddTransient <IConnectionSample, ConnectionSample>();
         }
 
     }

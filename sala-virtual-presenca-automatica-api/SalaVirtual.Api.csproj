@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SalaVirtual.Repositories\SalaVirtual.Repositories.csproj" />
     <ProjectReference Include="..\SalaVItual.Services\SalaVItual.Services.csproj" />
   </ItemGroup>
 
