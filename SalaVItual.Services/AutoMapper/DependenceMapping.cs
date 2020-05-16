@@ -30,7 +30,8 @@ namespace SalaVItual.Services.AutoMapper
 
         private static void RegisterRepositories(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient <IConnectionSample, ConnectionSample>();
+            serviceCollection.AddTransient <IRecoverPasswordRepository, RecoverPasswordRepository>();
+            serviceCollection.AddTransient <ICreateAcoutRepository, CreateAcoutRepository>();
         }
 
     }

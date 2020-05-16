@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataAccess\DbConnection.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="1.60.6" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.1" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.70" />
@@ -13,6 +17,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SalaVirtual.Util\SalaVirtual.Util.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataAccess\" />
   </ItemGroup>
 
 </Project>

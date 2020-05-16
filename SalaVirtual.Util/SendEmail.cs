@@ -17,26 +17,33 @@ namespace SalaVirtual.Util
 
         public void Email(string email, string senha)
         {
+            try
+            {
+                MailMessage mail = new MailMessage();
 
-            MailMessage mail = new MailMessage();
 
+                mail.From = new MailAddress(_variaveis.email);
+                mail.Subject = "Teste de email";
+                mail.IsBodyHtml = true;
 
-            mail.From = new MailAddress(_variaveis.email);
-            mail.Subject = "Teste de email";
-            mail.IsBodyHtml = true;
+                mail.Body = BodyEmail(senha);
 
-            mail.Body = BodyEmail(senha);
+                mail.To.Add(email);
 
-            mail.To.Add(email);
+                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com");
+                smtp.UseDefaultCredentials = true;
+                smtp.EnableSsl = true;
+                smtp.Port = Int32.Parse(_variaveis.port);
 
-            SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com");
-            smtp.UseDefaultCredentials = true;
-            smtp.EnableSsl = true;
-            smtp.Port = Int32.Parse(_variaveis.port);
+                smtp.Credentials = new NetworkCredential(_variaveis.email, _variaveis.password);
 
-            smtp.Credentials = new NetworkCredential(_variaveis.email, _variaveis.password);
-
-            smtp.Send(mail);
+                smtp.Send(mail);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+       
         }
 
         private string BodyEmail(string senha)

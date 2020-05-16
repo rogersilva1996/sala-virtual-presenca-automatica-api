@@ -13,9 +13,11 @@ namespace sala_virtual_presenca_automatica_api.Controllers
     public class PublicController : Controller
     {
         //private readonly IServiceTest _serviceTest;
+        private readonly ICreateAcoutRepository _createAcoutRepository;
 
-        public PublicController(/*IServiceTest serviceTest*/)
+        public PublicController(ICreateAcoutRepository createAcoutRepository/*IServiceTest serviceTest*/)
         {
+            _createAcoutRepository = createAcoutRepository;
             //_serviceTest = serviceTest;
         }
 
@@ -24,7 +26,8 @@ namespace sala_virtual_presenca_automatica_api.Controllers
         public IActionResult result()
         {
             UserViewModel userViewModel = new UserViewModel();
-      
+
+            _createAcoutRepository.CreateAcout("rotest", "test@hotmail.com", "roger123");
 
             return StatusCode(200, userViewModel);
         }

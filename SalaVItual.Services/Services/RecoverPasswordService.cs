@@ -14,9 +14,9 @@ namespace SalaVItual.Services.Services
     public class RecoverPasswordService : IRecoverPasswordService
     {
         private ISendEmail _sendEmail;
-        private IConnectionSample _connectionSample;
+        private IRecoverPasswordRepository _connectionSample;
 
-        public RecoverPasswordService(ISendEmail sendEmail, IConnectionSample connectionSample)
+        public RecoverPasswordService(ISendEmail sendEmail, IRecoverPasswordRepository connectionSample)
         {
             _sendEmail = sendEmail;
             _connectionSample = connectionSample;
@@ -30,24 +30,20 @@ namespace SalaVItual.Services.Services
                 //string recoveryPassword = repositoryRecoveryPassword.recover(email);
 
                 //TODO - senha = recoveryPassword
-                _connectionSample.teste();
-                //_sendEmail.Email(email, "9826test" /*recoveryPassword*/);
+                string password = _connectionSample.RecoverPassword(email);
 
-                return true/*recoveryResult*/;
+                _sendEmail.Email(email, password);
+
+                return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
 
 
 
-            //string recoveryPassword = repositoryRecoveryPassword.recover(email);
-
-            //TODO - senha = recoveryPassword
-            _sendEmail.Email(email, "9826test" /*recoveryPassword*/);
-
-            return true/*recoveryResult*/;
+          
         }
 
 
