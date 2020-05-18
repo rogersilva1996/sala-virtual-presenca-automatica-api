@@ -1,28 +1,34 @@
-﻿using SalaVItual.Services.ViewModels;
+﻿using SalaVirtual.Repositories;
+using SalaVItual.Services.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SalaVItual.Services.Services
 {
     public class LoginService : ILoginService
     {
+        private readonly ILoginRepository _loginRepository;
+        private bool result;
 
-        public LoginService()
+        public LoginService(ILoginRepository loginRepository)
         {
-
+            _loginRepository = loginRepository;
         }
 
         public bool login(UserViewModel user)
         {
-            //int cod_erro = repositoryLogin(user.email, user.senha);
+            try
+            {
+                IList<int> consulta = _loginRepository.Login(user.email, user.senha);
 
-            //if (repoistory.login == true)
-            //{
-            //    return true;
-            //}
+                result = (consulta[0] == 0) ? true : false;
 
-            return true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

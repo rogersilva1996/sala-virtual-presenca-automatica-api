@@ -1,43 +1,31 @@
 ﻿using Dapper;
-using Microsoft.Extensions.Options;
-using Oracle.ManagedDataAccess.Client;
-using SalaVirtual.Util.Environment;
+using SalaVirtual.Repositories.DataAccess;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SalaVirtual.Repositories
 {
-    public class LoginRepository
+    public class LoginRepository : ILoginRepository
     {
-        private readonly Connection _connection;
+        private IDbOracleConnection _dbConnection;
 
-        public LoginRepository(IOptions<Connection> connection)
+        public LoginRepository(IDbOracleConnection dbConnection)
         {
-            _connection = connection.Value;
+            _dbConnection = dbConnection;
         }
 
-        //public bool Login(string email, string senha)
-        //{
-        //    try
-        //    {
-        //        using (OracleConnection conn = new OracleConnection(_connection.connectionString))
-        //        {
-        //            conn.Open();
+        public IList<int> Login(string email, string senha)
+        {
+            try
+            {
+                IList<int> consulta = _dbConnection.Dbconnection().Query<int>("SELECT fn_verifica_login ('" + email + "'" + ",'" + senha + "') FROM dual").AsList();
 
-        //            IList<int> retorno = conn.Query<int>("SELECT fn_verifica_login ('" + email + "'"+ ",'" + senha + "') FROM dual").AsList();
-
-        //           if(retorno[0] == 1)
-        //            {
-
-        //            }
-        //        }
-        //    }
-        //    catch
-        //    {
-
-        //    }
-        //}
-
+                return consulta;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

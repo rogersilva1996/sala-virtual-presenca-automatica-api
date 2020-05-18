@@ -21,9 +21,26 @@ namespace SalaVirtual.Api.Controllers
         [HttpPost("signIn")]
         public IActionResult Register([FromBody] UserViewModel user)
         {
-            _registerService.Register(user);
+            try
+            {
+                if (_registerService.Register(user))
+                {
+                    return StatusCode(200, "Registro realizado com sucesso");
+                }
+                else
+                {
+                    return StatusCode(200, "Usuario ja cadastrado");
+                }
+                
+            }
+            catch(Exception ex)
+            {
+                return BadRequest("Erro ao efetuar cadastro");
+                throw ex;
+            }
+            
 
-            return StatusCode(200, "Registro realizado com sucesso");
+            
         }
     }
 }

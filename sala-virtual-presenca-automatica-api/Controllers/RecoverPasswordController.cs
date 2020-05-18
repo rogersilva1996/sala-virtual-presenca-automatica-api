@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalaVItual.Services.Services;
 using SalaVItual.Services.ViewModels;
+using System;
 
 namespace SalaVirtual.Api.Controllers
 {
@@ -18,13 +19,19 @@ namespace SalaVirtual.Api.Controllers
         [HttpPost("recuperar")]
         public IActionResult Recover([FromBody]UserViewModel user)
         {
-            if (_recoverPasswordService.Recover(user.email))
+            try
             {
-                return StatusCode(200, "OK");
-            }
+                if (_recoverPasswordService.Recover(user.email))
+                {
+                    return StatusCode(200, "OK");
+                }
 
-            return StatusCode(Response.StatusCode);
-            
+                return StatusCode(200, "email nao encontrado");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(200, ex.Message);
+            }
         }
 
     }

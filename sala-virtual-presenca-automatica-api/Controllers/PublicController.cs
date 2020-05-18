@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SalaVirtual.Repositories;
+using SalaVirtual.Util;
 using SalaVItual.Services.Services;
 using SalaVItual.Services.ViewModels;
 
@@ -13,9 +14,9 @@ namespace sala_virtual_presenca_automatica_api.Controllers
     public class PublicController : Controller
     {
         //private readonly IServiceTest _serviceTest;
-        private readonly ICreateAcoutRepository _createAcoutRepository;
+        private readonly IRegisterRepository _createAcoutRepository;
 
-        public PublicController(ICreateAcoutRepository createAcoutRepository/*IServiceTest serviceTest*/)
+        public PublicController(IRegisterRepository createAcoutRepository/*IServiceTest serviceTest*/)
         {
             _createAcoutRepository = createAcoutRepository;
             //_serviceTest = serviceTest;
@@ -27,22 +28,9 @@ namespace sala_virtual_presenca_automatica_api.Controllers
         {
             UserViewModel userViewModel = new UserViewModel();
 
-            _createAcoutRepository.CreateAcout("rotest", "test@hotmail.com", "roger123");
-
-            return StatusCode(200, userViewModel);
-        }
-
             
 
-        //// GET api/values/5
-        //[HttpGet("test")]
-        //public IActionResult Get(int value1, int value2)
-        //{
-
-        //    return StatusCode(200, _serviceTest.calc(value1, value2));
-
-        //}
-
-
+            return StatusCode(200, "teste api");
+        }
     }
 }

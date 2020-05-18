@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalaVItual.Services.Services;
 using SalaVItual.Services.ViewModels;
+using System;
 
 namespace SalaVirtual.Api.Controllers
 {
@@ -18,9 +19,23 @@ namespace SalaVirtual.Api.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody]UserViewModel user)
         {
-            _loginService.login(user);
+            try
+            {
+                if (_loginService.login(user))
+                {
+                    return StatusCode(200);
+                }
+                else
+                {
+                    return StatusCode(200, "dados cadastrais incorretos");
+                }
 
-            return StatusCode(200);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest("erro ao efetuar login" + ex.Message);
+            }
+           
         }
 
     }

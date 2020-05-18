@@ -1,27 +1,25 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Options;
+using Oracle.ManagedDataAccess.Client;
 using SalaVirtual.Repositories.DataAccess;
 using SalaVirtual.Util.Environment;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Text;
 
 namespace SalaVirtual.Repositories
 {
-
-
-    public class RecoverPasswordRepository : IRecoverPasswordRepository
+    public class RegisterRepository : IRegisterRepository
     {
-        private readonly Connection _connection;
         private readonly IDbOracleConnection _dbOracleConnection;
 
-
-        public RecoverPasswordRepository(IDbOracleConnection dbOracleConnection, IOptions<Connection> connection)
+        public RegisterRepository(IDbOracleConnection dbOracleConnection, IOptions<Connection> connection)
         {
             _dbOracleConnection = dbOracleConnection;
-            _connection = connection.Value;
         }
 
-        public IList<int> EmailExist(string email)
+        public IList<int> ValidateCreateAcout(string email)
         {
             try
             {
@@ -29,22 +27,25 @@ namespace SalaVirtual.Repositories
 
                 return conferencia;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
-
+          
         }
 
-        public string RecoverPassword(string email)
+        public void CreateAcout(string nome, string email, string senha)
         {
             try
             {
-                IList<int> test = _dbOracleConnection.Dbconnection().Query<int>("SELECT fn_recupera_senha ('" + email + "') FROM dual").AsList();
 
-                string password = test[0].ToString();
+                string query = "declare " +
+                               "vRetorno int; " +
+                               "begin " +
+                               "sp_insert_cadastro ('" + nome + "','" + email + "','" + senha + "', pRetorno => vRetorno); " +
+                               "end;";
 
-                return password;
+                IList<int> test = _dbOracleConnection.Dbconnection().Query<int>(query).AsList();
             }
             catch (Exception ex)
             {
@@ -52,6 +53,4 @@ namespace SalaVirtual.Repositories
             }
         }
     }
-
-
 }
